@@ -15,7 +15,7 @@ def command(*args):
     bad = False
     line = e.get()
     line = line.split(' ')
-    commands = ['COMMANDS:','help','clear','info','exit','run','bin','hex','dec']
+    commands = ['COMMANDS:','help','clear','info','exit','run','bin','hex','dec','+','-','*','/']
     key = line[0]
 
     # help command
@@ -89,6 +89,41 @@ def command(*args):
                 bad = True
         else:
             bad = True
+
+    # addition command
+    elif key == '+':
+        total = 0
+        for x in range(len(line)-1):
+            total += float(line[x+1])
+        outputtext(str(total))
+
+
+    # subtraction command
+    elif key == '-':
+        total = 0
+        for x in range(len(line)-1):
+            total -= float(line[x+1])
+        outputtext(str(total))
+
+
+    # multiplication command
+    elif key == '*':
+        total = float(line[1])
+        for x in range(len(line)-2):
+            total *= float(line[x+2])
+        outputtext(str(total))
+
+
+    # division command
+    elif key == '/':
+        total = float(line[1])
+        for x in range(len(line)-2):
+            if float(line[x+2]) == 0:
+                outputtext('Error: division by 0')
+                break
+            else:
+                total /= float(line[x+2])
+        outputtext(str(total))
 
 
     else:
