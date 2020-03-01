@@ -25,3 +25,5 @@ Command|Syntax|Function
 - `hex dec f8` outputs 248 (f8 was converted to 248)
 - `dec bin 295` outputs 100100111 (295 was converted to 100100111)
 - `dec hex 179` outputs b3 (179 was converted to b3)
+- `run os current` opens a new tkinter window
+- `run os previous` opens a new tkinter window
