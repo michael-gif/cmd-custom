@@ -17,6 +17,10 @@ Command|Syntax|Function
 `bin`|`bin hex <binary>`  or  `bin dec <binary>`|converts binary to hexadecimal or decimal
 `hex`|`hex bin <hexadecimal>` or `hex dec <hexadecimal>`|converts hexadecimal to binary or decimal
 `dec`|`dec bin <decimal>`  or  `dec hex <decimal>`|converts decimal to binary or hexadecimal
+`+`|`+ <number> <number>`|adds all the numbers after it together
+`-`|`- <number> <number>`|subtracts all the numbers after it
+`*`|`* <number> <number>`|multiplies all the numbers after it together
+`/`|`/ <number> <number>`|divides all the numbers after it
 
 ### Command examples
 - `bin hex 10100110` outputs a6 (10100110 was converted to a6)
@@ -27,3 +31,8 @@ Command|Syntax|Function
 - `dec hex 179` outputs b3 (179 was converted to b3)
 - `run os current` opens a new tkinter window
 - `run os previous` opens a new tkinter window
+- `+ 1 3` outputs 4 (3 was added to 1)
+- `- 5 4` outputs 1 (4 was subtracted from 5)
+- `* 3 8` outputs 24 (8 was multiplied by 3)
+- `/ 6 3` outputs 2 (6 was divided by 3)
+- `/ 8 4 2` outputs 1 (8 was divided by 4, then the answer was divided by 2)
