@@ -1,6 +1,6 @@
 import tkinter as tk
 window = tk.Tk()
-window.title('slipdrive_cmd')
+window.title('custom_cmd')
 window.geometry('647x343')
 window.configure(background='grey25')
 window.resizable(0,0)
@@ -15,26 +15,31 @@ def command(*args):
     bad = False
     line = e.get()
     line = line.split(' ')
-    commands = ['COMMANDS:','help','clear','info','run','bin','hex','dec']
+    commands = ['COMMANDS:','help','clear','info','exit','run','bin','hex','dec']
     key = line[0]
 
+    # help command
     if key == 'help':
         if len(line) < 2:
             outputtext('\n'.join(commands) + '\n')
         else:
             bad = True
 
-
+    # clear command
     elif key == 'clear':
         t.configure(state='normal')
         t.delete(1.0,tk.END)
         t.configure(state="disabled")
 
-
+    # info command
     elif key == 'info':
-        outputtext('--SlipDrive Command Prompt--')
+        outputtext('--Custom Command Prompt--')
 
+    # exit command
+    elif key == 'exit':
+        root.destroy()
 
+    # run command
     elif key == 'run':
         if len(line) == 3:
             if line[1] == 'os':
@@ -49,7 +54,7 @@ def command(*args):
         else:
             bad = True
 
-    #binary, hexadecimal and decimal converters
+    #bin command
     elif key == 'bin': 
         if len(line) > 2:
             if line[1] == 'hex':
@@ -61,7 +66,7 @@ def command(*args):
         else:
             bad = True
 
-
+    # hex command
     elif key == 'hex':
         if len(line) > 2:
             if line[1] == 'bin':
@@ -73,7 +78,7 @@ def command(*args):
         else:
             bad = True
 
-
+    # dec command
     elif key == 'dec':
         if len(line) > 2:
             if line[1] == 'bin':
@@ -89,19 +94,21 @@ def command(*args):
     else:
         bad = True
 
-
+    # unknown commands
     if bad == True:
         outputtext("'" + e.get() + "' not recognised")
         bad = False
 
+# cmd output
 t = tk.Text(window,bg='black',fg='white',state="disabled")
 t.place(x=0,y=0,width=647,height=321)
 
+# cmd input
 e = tk.Entry(window,bg='black',fg='white',insertbackground='white')
 e.place(x=0,y=322,width=647,height=20)
 e.bind('<Return>',command)
 e.focus()
 
-outputtext('--SlipDrive Command Prompt--')
+outputtext('--Custom Command Prompt--')
 
 tk.mainloop()
