@@ -18,7 +18,7 @@
   
 Command|Syntax|Function
 -------|------|--------
-`help`|`help`|
+`help`|`help`|displays all possible commands
 `clear`|`clear`|clears the cmd output
 `info`|`info`|displays the available information about the cmd
 `exit`|`exit`|exits the program
