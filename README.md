@@ -27,7 +27,7 @@
 - `run`
   - can run an os version
 - `bin`, `hex` and `dec`
-  - type one of them and then another followed by what to convert.
+  - converts from one to the other
 
 ### Command syntax
 - help
