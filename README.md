@@ -3,16 +3,7 @@
 
 ### Getting started
 1. To get started, download the pyc file or the py file, and run it.
-2. Then type one of the following commands: 
-
-   - `help`
-   - `clear`
-   - `info`
-   - `exit`
-   - `run`
-   - `bin`
-   - `hex`
-   - `dec`
+2. Then type one of the commands below:
    
 ### Commands
   
