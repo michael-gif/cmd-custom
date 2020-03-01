@@ -13,44 +13,20 @@
    - `bin`
    - `hex`
    - `dec`
-
+   
 ### Commands
-- `help`
-  - displays all possible commands
   
-- `clear`
-  - clears the cmd output
-- `info`
-  - displays the available information about the cmd
-- `exit`
-  - exits the program
-- `run`
-  - can run an os version
-- `bin`, `hex` and `dec`
-  - converts from one to the other
+Command|Syntax|Function
+-------|------|--------
+`help`|`help`|
+`clear`|`clear`|clears the cmd output
+`info`|`info`|displays the available information about the cmd
+`exit`|`exit`|exits the program
+`run`|`run os <verison>`|can run an os version
+`bin`|`bin hex <binary>`  or  `bin dec <binary>`|converts binary to hexadecimal or decimal
+`hex`|`hex bin <hexadecimal>` or `hex dec <hexadecimal>`|converts hexadecimal to binary or decimal
+`dec`|`dec bin <decimal>`  or  `dec hex <decimal>`|converts decimal to binary or hexadecimal
 
-### Command syntax
-- help
-  - `help`
-  
-- clear
-  - `clear`
-- info
-  - `info`
-- exit
-  - `exit`
-- run
-  - `run os <verison>`
-- bin
-  - `bin hex <binary>` converts binary to hex
-  - `bin dec <binary>` converts binary to decimal
-- hex
-  - `hex bin <hexadecimal>` converts hexadecimal to binary
-  - `hex dec <hexadecimal>` converts hexadecimal to decimal
-- dec
-  - `dec bin <decimal>` converts decimal to binary
-  - `dec hex <decimal>` converts decimal to hexadecimal
-  
 ### Command examples
 - `bin hex 10100110` outputs a6
 - `bin dec 0011` outputs 3
