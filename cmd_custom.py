@@ -1,4 +1,5 @@
 import tkinter as tk
+import os
 window = tk.Tk()
 window.title('custom_cmd')
 window.geometry('647x343')
@@ -15,9 +16,9 @@ def command(*args):
     bad = False
     line = e.get()
     line = line.split(' ')
-    commands = ['COMMANDS:','help','clear','info','exit','run','bin','hex','dec','+','-','*','/']
+    commands = ['COMMANDS:','help','clear','info','exit','run','bin','hex','dec','+','-','*','/','new','del','open']
     key = line[0]
-
+    
     # help command
     if key == 'help':
         if len(line) < 2:
@@ -37,7 +38,7 @@ def command(*args):
 
     # exit command
     elif key == 'exit':
-        root.destroy()
+        window.destroy()
 
     # run command
     elif key == 'run':
@@ -56,7 +57,7 @@ def command(*args):
 
     #bin command
     elif key == 'bin': 
-        if len(line) > 2:
+        if len(line) == 3:
             if line[1] == 'hex':
                 outputtext(e.get() + '\n' + hex(int(line[2],2)).replace('0x',''))
             elif line[1] == 'dec':
@@ -68,7 +69,7 @@ def command(*args):
 
     # hex command
     elif key == 'hex':
-        if len(line) > 2:
+        if len(line) == 3:
             if line[1] == 'bin':
                 outputtext(e.get() + '\n' + bin(int(line[2],16)).replace('0b',''))
             elif line[1] == 'dec':
@@ -80,7 +81,7 @@ def command(*args):
 
     # dec command
     elif key == 'dec':
-        if len(line) > 2:
+        if len(line) == 3:
             if line[1] == 'bin':
                 outputtext(e.get() + '\n' + bin(int(line[2])).replace('0b',''))
             elif line[1] == 'hex':
@@ -92,42 +93,94 @@ def command(*args):
 
     # addition command
     elif key == '+':
-        total = 0
-        for x in range(len(line)-1):
-            total += float(line[x+1])
-        outputtext(str(total))
+        if len(line) > 1:
+            total = float(line[1])
+            for x in range(len(line)-1):
+                total += float(line[x+1])
+            outputtext(str(total))
+        else:
+            bad = True
 
 
     # subtraction command
     elif key == '-':
-        total = 0
-        for x in range(len(line)-1):
-            total -= float(line[x+1])
-        outputtext(str(total))
+        if len(line) > 1:
+            total = float(line[1])
+            for x in range(len(line)-1):
+                total -= float(line[x+1])
+            outputtext(str(total))
+        else:
+            bad = True
 
 
     # multiplication command
     elif key == '*':
-        total = float(line[1])
-        for x in range(len(line)-2):
-            total *= float(line[x+2])
-        outputtext(str(total))
+        if len(line) > 1:
+            total = float(line[1])
+            for x in range(len(line)-2):
+                total *= float(line[x+2])
+            outputtext(str(total))
+        else:
+            bad = True
 
 
     # division command
     elif key == '/':
-        total = float(line[1])
-        for x in range(len(line)-2):
-            if float(line[x+2]) == 0:
-                outputtext('Error: division by 0')
-                break
+        if len(line) > 1:
+            total = float(line[1])
+            for x in range(len(line)-2):
+                if float(line[x+2]) == 0:
+                    outputtext('Error: division by 0')
+                    break
+                else:
+                    total /= float(line[x+2])
+            outputtext(str(total))
+        else:
+            bad = True
+
+
+    # new command
+    elif key == 'new':
+        if len(line) == 3:
+            if line[1] == 'file':
+                with open(line[2],'w') as f:
+                    f.write('hello')
+                outputtext('Created file: ' + line[2])
             else:
-                total /= float(line[x+2])
-        outputtext(str(total))
+                bad = True
+        else:
+            bad = True
 
 
-    else:
-        bad = True
+    # del command
+    elif key == 'del':
+        if len(line) == 3:
+            if line[1] == 'file':
+                if os.path.exists(line[2]):
+                  os.remove(line[2])
+                  outputtext('Deleted file: ' + line[2])
+                else:
+                  outputtext("The file does not exist")
+            else:
+                bad = True
+        else:
+            bad = True
+
+
+    # open command
+    elif key == 'open':
+        if len(line) == 3:
+            if line[1] == 'file':
+                if os.path.exists(line[2]):
+                    with open(line[2],'r') as f:
+                        outputtext(f.read())
+                else:
+                    outputtext('The file does not exist')
+            else:
+                bad = True
+        else:
+            bad = True
+
 
     # unknown commands
     if bad == True:
