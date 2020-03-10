@@ -21,6 +21,9 @@ Command|Syntax|Function
 `-`|`- <number> <number>`|subtracts all the numbers after it
 `*`|`* <number> <number>`|multiplies all the numbers after it together
 `/`|`/ <number> <number>`|divides all the numbers after it
+`new`|`new file <file name>`|creates a file
+`del`|`del file <file name>`|deletes a file
+`open`|`open file <file name>`|opens a file
 
 ### Command examples
 - `bin hex 10100110` outputs a6 (10100110 was converted to a6)
@@ -36,3 +39,6 @@ Command|Syntax|Function
 - `* 3 8` outputs 24 (8 was multiplied by 3)
 - `/ 6 3` outputs 2 (6 was divided by 3)
 - `/ 8 4 2` outputs 1 (8 was divided by 4, then the answer was divided by 2)
+- `new file bob.txt` creates a text file called bob
+- `del file bob.txt` deletes the file `bob.txt`
+- `open file bob.txt` opens the file `bob.txt` and displays it's contents
