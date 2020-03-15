@@ -20,9 +20,9 @@ def fileedit():
             f.write(text)
     t = tk.Text(window2,bg='black',fg='white',insertbackground='white',state="normal")
     t.place(x=0,y=0,width=647,height=320)
-    b = tk.Button(window2,bg='grey25',text='Open',command=openfile)
+    b = tk.Button(window2,bg='grey25',fg='white',text='Open',command=openfile)
     b.place(x=0,y=318,width=323)
-    b2 = tk.Button(window2,bg='grey25',text='Save',command=savefile)
+    b2 = tk.Button(window2,bg='grey25',fg='white',text='Save',command=savefile)
     b2.place(x=324,y=318,width=323)
     tk.mainloop()
 
