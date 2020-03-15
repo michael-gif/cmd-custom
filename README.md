@@ -43,3 +43,8 @@ Command|Syntax|Function
 - `new file bob.txt` creates a text file called bob
 - `del file bob.txt` deletes the file `bob.txt`
 - `open file bob.txt` opens the file `bob.txt` and displays it's contents
+
+### File editor
+To use the file editor, type `run file editor` to open the editor.  
+Then click the 'Open' button and choose a file.  
+Click the 'Save' button to save changes to a file.
