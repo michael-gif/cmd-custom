@@ -13,7 +13,7 @@ Command|Syntax|Function
 `clear`|`clear`|clears the cmd output
 `info`|`info`|displays the available information about the cmd
 `exit`|`exit`|exits the program
-`run`|`run os <verison>`|can run an os version
+`run`|`run os <verison>`<br>`run file editor`|can run an os version<br>launches the file editor
 `bin`|`bin hex <binary>`  or  `bin dec <binary>`|converts binary to hexadecimal or decimal
 `hex`|`hex bin <hexadecimal>` or `hex dec <hexadecimal>`|converts hexadecimal to binary or decimal
 `dec`|`dec bin <decimal>`  or  `dec hex <decimal>`|converts decimal to binary or hexadecimal
@@ -34,6 +34,7 @@ Command|Syntax|Function
 - `dec hex 179` outputs b3 (179 was converted to b3)
 - `run os current` opens a new tkinter window
 - `run os previous` opens a new tkinter window
+- `run file editor` launches the file editor
 - `+ 1 3` outputs 4 (3 was added to 1)
 - `- 5 4` outputs 1 (4 was subtracted from 5)
 - `* 3 8` outputs 24 (8 was multiplied by 3)
