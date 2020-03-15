@@ -47,4 +47,6 @@ Command|Syntax|Function
 ### File editor
 To use the file editor, type `run file editor` to open the editor.  
 Then click the 'Open' button and choose a file.  
-Click the 'Save' button to save changes to a file.
+![alt text](https://github.com/michael-gif/cmd-custom/mdImages/open_button.png)  
+Click the 'Save' button to save changes to a file.  
+![alt text](https://github.com/michael-gif/cmd-custom/mdImages/save_button.png)
