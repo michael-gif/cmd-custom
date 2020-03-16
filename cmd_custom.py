@@ -1,9 +1,11 @@
 import tkinter as tk
 import os
+import file_editor as fe
 window = tk.Tk()
 window.title('custom_cmd')
 window.geometry('647x343')
-window.configure(background='grey25')
+window.configure(background='black')
+window.iconbitmap(r'command-line.ico')
 window.resizable(0,0)
 
 def outputtext(text):
@@ -48,6 +50,11 @@ def command(*args):
                     window2 = tk.Tk()
                 elif line[2] == 'previous':
                     window3 = tk.Tk()
+                else:
+                    bad = True
+            elif line[1] == 'file':
+                if line[2] == 'editor':
+                    fe.fileedit()
                 else:
                     bad = True
             else:
@@ -173,7 +180,11 @@ def command(*args):
             if line[1] == 'file':
                 if os.path.exists(line[2]):
                     with open(line[2],'r') as f:
-                        outputtext(f.read())
+                        contents = f.read()
+                        if contents == '':
+                            outputtext('The file is empty')
+                        else:
+                            outputtext(contents)
                 else:
                     outputtext('The file does not exist')
             else:
