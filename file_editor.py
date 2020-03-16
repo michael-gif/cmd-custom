@@ -5,14 +5,14 @@ def fileedit():
     window2.title('custom_cmd:file-editor')
     window2.geometry('647x343')
     window2.configure(bg='black')
+    window2.iconbitmap(r'command-line.ico')
     name = ''
     def openfile():
         global name
         name = filedialog.askopenfilename(initialdir = "/",title = "Select file",filetypes = (("text files","*.txt"),("all files","*.*")))
         with open(name,'r') as f:
-            lines = f.readlines()
-            for line in lines:
-                t.insert(tk.INSERT,line)
+            lines = f.read()
+            t.insert(tk.INSERT,lines)
     def savefile():
         global name
         with open(name,'w') as f:
