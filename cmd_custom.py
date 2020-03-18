@@ -1,16 +1,16 @@
-import tkinter as tk
+from tkinter import *
 import os
-import file_editor as fe
-window = tk.Tk()
+import better_fileedit as fe
+window = Tk()
 window.title('custom_cmd')
 window.geometry('647x343')
 window.configure(background='black')
 window.iconbitmap(r'command-line.ico')
 window.resizable(0,0)
-
+version = 'v2.0.0'
 def outputtext(text):
     t.configure(state='normal')
-    t.insert(tk.INSERT,text + '\n')
+    t.insert(INSERT,text + '\n')
     t.see('end')
     t.configure(state="disabled")
 
@@ -31,12 +31,12 @@ def command(*args):
     # clear command
     elif key == 'clear':
         t.configure(state='normal')
-        t.delete(1.0,tk.END)
+        t.delete(1.0,END)
         t.configure(state="disabled")
 
     # info command
     elif key == 'info':
-        outputtext('--Custom Command Prompt--')
+        outputtext('--Custom Command Prompt ' + version + '-- ')
 
     # exit command
     elif key == 'exit':
@@ -47,9 +47,9 @@ def command(*args):
         if len(line) == 3:
             if line[1] == 'os':
                 if line[2] == 'current':
-                    window2 = tk.Tk()
+                    window2 = Tk()
                 elif line[2] == 'previous':
-                    window3 = tk.Tk()
+                    window3 = Tk()
                 else:
                     bad = True
             elif line[1] == 'file':
@@ -193,21 +193,24 @@ def command(*args):
             bad = True
 
 
+    else:
+        bad = True
+
     # unknown commands
     if bad == True:
         outputtext("'" + e.get() + "' not recognised")
         bad = False
 
 # cmd output
-t = tk.Text(window,bg='black',fg='white',state="disabled")
+t = Text(window,bg='black',fg='white',state="disabled")
 t.place(x=0,y=0,width=647,height=321)
 
 # cmd input
-e = tk.Entry(window,bg='black',fg='white',insertbackground='white')
+e = Entry(window,bg='black',fg='white',insertbackground='white')
 e.place(x=0,y=322,width=647,height=20)
 e.bind('<Return>',command)
 e.focus()
 
-outputtext('--Custom Command Prompt--')
+outputtext('--Custom Command Prompt ' + version + '-- ')
 
-tk.mainloop()
+mainloop()
