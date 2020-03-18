@@ -1,6 +1,6 @@
 from tkinter import *
 import os
-import better_fileedit as fe
+import file_editor as fe
 window = Tk()
 window.title('custom_cmd')
 window.geometry('647x343')
