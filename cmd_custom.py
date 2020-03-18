@@ -8,7 +8,6 @@ window.configure(background='black')
 window.iconbitmap(r'command-line.ico')
 window.resizable(0,0)
 version = 'v2.0.0'
-
 def outputtext(text):
     t.configure(state='normal')
     t.insert(INSERT,text + '\n')
