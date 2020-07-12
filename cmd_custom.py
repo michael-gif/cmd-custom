@@ -8,7 +8,7 @@ window.configure(background='black')
 window.iconbitmap(r'command-line.ico')
 window.resizable(0,0)
 text = ''
-version = 'v3.0.0'
+version = 'v3.0.1'
 def getcommand():
     global text
     text2 = t.get('1.0','end-1c')
