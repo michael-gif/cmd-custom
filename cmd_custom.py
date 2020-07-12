@@ -8,7 +8,7 @@ window.configure(background='black')
 window.iconbitmap(r'command-line.ico')
 window.resizable(0,0)
 text = ''
-version = 'v3.0.1'
+version = 'v3.0.2'
 def getcommand():
     global text
     text2 = t.get('1.0','end-1c')
@@ -25,9 +25,6 @@ def outputtext(text):
 
 def command(event):
     global text
-    '''text2 = t.get('1.0','end-1c')
-    commandlength = len(text2) - len(text)
-    command = text2[len(text):len(text2)]'''
     command = getcommand()
     line = command.split(' ')
     key = line[0]
@@ -221,9 +218,9 @@ def command(event):
         bad = False
 
     if t.get('1.0','end-1c') == '':
-        t.insert('end','C:\\')
+        t.insert('end','C:\\>')
     else:
-        t.insert('end','\nC:\\')
+        t.insert('end','\nC:\\>')
     text = t.get('1.0','end-1c')
     return "break"
 
@@ -237,7 +234,7 @@ def preventbackspace(event):
 
 t = Text(window,bg='black',fg='white',insertbackground='white')
 t.place(x=0,y=0,width=677,height=343)
-t.insert('end','C:\\')
+t.insert('end','C:\\>')
 t.bind("<Return>",command)
 t.bind("<BackSpace>",preventbackspace)
 text = t.get('1.0','end-1c')
