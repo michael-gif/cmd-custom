@@ -1,39 +1,50 @@
 from tkinter import *
-import os
 import file_editor as fe
+import os
 window = Tk()
 window.title('custom_cmd')
 window.geometry('647x343')
 window.configure(background='black')
 window.iconbitmap(r'command-line.ico')
 window.resizable(0,0)
+text = ''
 version = 'v2.0.0'
+def getcommand():
+    global text
+    text2 = t.get('1.0','end-1c')
+    commandlength = len(text2) - len(text)
+    command = text2[len(text):len(text2)]
+    return command
 
+def newline():
+    t.insert(END,'\n')
+    
 def outputtext(text):
-    t.configure(state='normal')
-    t.insert(INSERT,text + '\n')
+    t.insert(END,'\n' + text + '\n')
     t.see('end')
-    t.configure(state="disabled")
 
-def command(*args):
-    bad = False
-    line = e.get()
-    line = line.split(' ')
-    commands = ['COMMANDS:','help','clear','info','exit','run','bin','hex','dec','+','-','*','/','new','del','open']
+def command(event):
+    global text
+    '''text2 = t.get('1.0','end-1c')
+    commandlength = len(text2) - len(text)
+    command = text2[len(text):len(text2)]'''
+    command = getcommand()
+    line = command.split(' ')
     key = line[0]
+    bad = False
+    commands = ['COMMANDS:','help','clear','info','exit','run','bin','hex','dec','+','-','*','/','new','del','open']
     
     # help command
     if key == 'help':
         if len(line) < 2:
-            outputtext('\n'.join(commands) + '\n')
+            outputtext('\n'.join(commands))
         else:
             bad = True
+        newline()
 
     # clear command
     elif key == 'clear':
-        t.configure(state='normal')
         t.delete(1.0,END)
-        t.configure(state="disabled")
 
     # info command
     elif key == 'info':
@@ -42,7 +53,7 @@ def command(*args):
     # exit command
     elif key == 'exit':
         window.destroy()
-
+        
     # run command
     elif key == 'run':
         if len(line) == 3:
@@ -62,14 +73,15 @@ def command(*args):
                 bad = True
         else:
             bad = True
+        newline()
 
     #bin command
     elif key == 'bin': 
         if len(line) == 3:
             if line[1] == 'hex':
-                outputtext(e.get() + '\n' + hex(int(line[2],2)).replace('0x',''))
+                outputtext(getcommand() + ':\n' + hex(int(line[2],2)).replace('0x',''))
             elif line[1] == 'dec':
-                outputtext(e.get() + '\n' + str(int(line[2],2)))
+                outputtext(getcommand() + ':\n' + str(int(line[2],2)))
             else:
                 bad = True
         else:
@@ -79,9 +91,9 @@ def command(*args):
     elif key == 'hex':
         if len(line) == 3:
             if line[1] == 'bin':
-                outputtext(e.get() + '\n' + bin(int(line[2],16)).replace('0b',''))
+                outputtext(getcommand() + ':\n' + bin(int(line[2],16)).replace('0b',''))
             elif line[1] == 'dec':
-                outputtext(e.get() + '\n' + str(int(line[2],16)))
+                outputtext(getcommand() + ':\n' + str(int(line[2],16)))
             else:
                 bad = True
         else:
@@ -91,9 +103,9 @@ def command(*args):
     elif key == 'dec':
         if len(line) == 3:
             if line[1] == 'bin':
-                outputtext(e.get() + '\n' + bin(int(line[2])).replace('0b',''))
+                outputtext(getcommand() + ':\n' + bin(int(line[2])).replace('0b',''))
             elif line[1] == 'hex':
-                outputtext(e.get() + '\n' + hex(int(line[2])).replace('0x',''))
+                outputtext(getcommand() + ':\n' + hex(int(line[2])).replace('0x',''))
             else:
                 bad = True
         else:
@@ -102,7 +114,7 @@ def command(*args):
     # addition command
     elif key == '+':
         if len(line) > 1:
-            total = float(line[1])
+            total = float(0)
             for x in range(len(line)-1):
                 total += float(line[x+1])
             outputtext(str(total))
@@ -113,7 +125,7 @@ def command(*args):
     # subtraction command
     elif key == '-':
         if len(line) > 1:
-            total = float(line[1])
+            total = float(0)
             for x in range(len(line)-1):
                 total -= float(line[x+1])
             outputtext(str(total))
@@ -139,10 +151,12 @@ def command(*args):
             for x in range(len(line)-2):
                 if float(line[x+2]) == 0:
                     outputtext('Error: division by 0')
+                    badoutput = True
                     break
                 else:
                     total /= float(line[x+2])
-            outputtext(str(total))
+            if not badoutput:
+                outputtext(str(total))
         else:
             bad = True
 
@@ -193,25 +207,39 @@ def command(*args):
         else:
             bad = True
 
-
+    
     else:
         bad = True
 
-    # unknown commands
-    if bad == True:
-        outputtext("'" + e.get() + "' not recognised")
+    if command == '':
         bad = False
 
-# cmd output
-t = Text(window,bg='black',fg='white',state="disabled")
-t.place(x=0,y=0,width=647,height=321)
+    # unknown commands
+    if bad == True:
+        badcommand = getcommand()
+        outputtext("'" + badcommand + "' not recognised")
+        bad = False
 
-# cmd input
-e = Entry(window,bg='black',fg='white',insertbackground='white')
-e.place(x=0,y=322,width=647,height=20)
-e.bind('<Return>',command)
-e.focus()
+    if t.get('1.0','end-1c') == '':
+        t.insert('end','C:\\')
+    else:
+        t.insert('end','\nC:\\')
+    text = t.get('1.0','end-1c')
+    return "break"
 
-outputtext('--Custom Command Prompt ' + version + '-- ')
+def preventbackspace(event):
+    global text
+    pos = t.index(INSERT)
+    pos.split('.')
+    print(pos)
+    if int(pos[2]) == len(text):
+        return "break"
 
-mainloop()
+t = Text(window,bg='black',fg='white',insertbackground='white')
+t.place(x=0,y=0,width=677,height=343)
+t.insert('end','C:\\')
+t.bind("<Return>",command)
+t.bind("<BackSpace>",preventbackspace)
+text = t.get('1.0','end-1c')
+t.focus()
+window.mainloop()
